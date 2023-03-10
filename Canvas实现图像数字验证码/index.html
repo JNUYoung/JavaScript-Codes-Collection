@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端验证码实现</title>
+    <style>
+        html, body {
+            box-sizing: border-box;
+        }
+        .input-container {
+            margin: 10px auto;
+            text-align: center;
+        }
+        .img-verify-container {
+            width: 240px;
+            height: 80px;
+            border: 1px solid #000;
+            margin: 0 auto;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .refresh-btn {
+            margin: 10px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <input type="text" placeholder="请输入验证码" id="input-verify-code">
+        <input type="button" value="confirm" id="confirm-btn">
+    </div>
+    <div class="img-verify-container">
+        <canvas id="img-verify-drawing"></canvas>
+    </div>
+    <div class="refresh-btn">
+        <button id="switch-btn">refresh</button>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>

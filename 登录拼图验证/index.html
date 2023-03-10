@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- 校验区域 -->
+    <div class="check">
+        <div class="check-child"></div>
+    </div>
+    <!-- 拖动区域 -->
+    <div class="drag">
+        <div class="drag-child"></div>
+        <div class="drag-tip">
+            <span>向右滑动</span>
+        </div>
+    </div>
+
+    <!-- 
+        1.准备放置背景图片的盒子，并设置背景图片；
+        2.从背景中选择一块区域作为校验区域，通过设置伪元素并覆盖到该区域；
+        3.需要根据校验区域大小切出被校验区域（拼图块）
+        4.设置底部拖动区域
+        5.给拖动的滑块添加拖动事件
+        6.让拼图块跟滑块同步移动
+     -->
+</body>
+<script src="index.js"></script>
+</html>

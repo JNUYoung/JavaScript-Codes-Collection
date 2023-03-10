@@ -1,0 +1,80 @@
+/* 整个背景图片 */
+.check {
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+    /* background-position: center;  设置背景图像的起始位置，默认为0 0 */
+    background-image: url(https://t7.baidu.com/it/u=4162611394,4275913936&fm=193&f=GIF);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* 校验区域，图片中挖出来的空白区域，通过绝对定位定位到check盒子区域内 */
+.check::before {
+    content: '';
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #fff;
+    position: absolute;
+    top: 100px;
+    left: 280px;
+}
+
+/*
+    在check盒子中增加一个check-child盒子作为拼图块
+    check-child盒子继承父盒子的background-image
+    设置check-child盒子的background-size等于父盒子大小
+    设置check-child盒子的background-position为校验区域的坐标位置
+    【相当于给拼图块设置同样背景，只是让背景图片的起点（左上角）与校验区域的左上角保持一致】
+*/
+.check-child {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #fff;
+    background-image: inherit;
+    background-repeat: inherit;
+    background-size: 400px 300px;
+    background-position: -280px -100px;
+    position: absolute;
+    top: 100px;
+    left: 20px;
+}
+
+/* 拖动区域 */
+.drag {
+    width: 400px;
+    height: 50px;
+    background-color: #e3e3e3;
+    margin: 0 auto;
+    margin-top: 10px;
+    position: relative;
+}
+
+.drag-child {
+    width: 50px;
+    height: 50px;
+    background-color: pink;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.drag-tip {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #8a8a8a;
+    user-select: none;
+}
+
+/* 动画：未通过校验时还原到初始位置 */
+@keyframes move {
+    to {
+        transform: translateX(0);
+    }
+}

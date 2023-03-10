@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片懒加载</title>
+</head>
+<body>
+    <!-- 
+        当图片出现在可视区时，再加载图片，给img标签设置src属性
+     -->
+     <img src="" alt="" data-src="www.xxx.com/aaa.png">
+</body>
+
+<script>
+    const imgs = document.getElementsByTagName('img')
+
+    window.addEventListener('scroll', (e) => {
+        loadPic()
+    })
+    
+    // 第一种方法：使用元素相对页面顶部的距离
+    function loadPic() {
+        for (let item of imgs) {
+            // offsetTop：元素到页面顶部的距离 < 窗口高度 + 已经滚动的距离
+            if (item.offsetTop < window.innerHeight + window.scrollY) {
+                const truePicSrc = item.getAttribute('data-src')
+                item.setAttribute('src', truePicSrc)
+            }
+        }
+    }
+
+
+    // 第二种方法：使用元素相对于浏览器视口顶部的距离
+    function loadPic() {
+        for (let item of imgs) {
+            // 元素到浏览器视口顶部的距离  <  浏览器视口高度
+            // getBoundingClientRect()返回一个对象，其具有top、left、right、bottom属性
+            if (item.getBoundingClientRect().top < window.innerHeight) {
+                const truePicSrc = item.getAttribute('data-src')
+                item.setAttribute('src', truePicSrc)
+            }
+        }
+    }
+
+    // ※ 第三种方法：使用IntersectionObserver构造函数
+    // 该构造函数的作用就是能够观察可视窗口与目标元素产生的交叉区域
+    // 当图片出现或消失在可视窗口时，执行相应的回调函数
+    const observer = new IntersectionObserver(callback)
+    function callback() {
+        for (let item of imgs) {
+            if (item.intersecting) {
+                let img = item.target
+                let trueSrc = img.getAttribute('data-src')
+                item.setAttribute('src', trueSrc)
+                observer.unobserve(img)
+            }
+        }
+    }
+    for (let i of imgs) {
+        observer.observe(i)
+    }
+</script>
+</html>
