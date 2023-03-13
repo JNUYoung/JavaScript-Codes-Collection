@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #card {
+            width: 256px;
+            height: 256px;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #quickBtn {
+            width: 92px;
+            height: 27px;
+            padding: 5px;
+            background-color: #fff;
+            text-align: center;
+            line-height:27px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="card">
+        <div id="quickBtn">quick look</div>
+    </div>
+</body>
+<script>
+    const card = document.querySelector('#card')
+    const btn = document.querySelector('#quickBtn')
+
+    card.addEventListener('mouseenter', () => btn.style.display='block')
+    card.addEventListener('mouseleave', () => btn.style.display='none')
+
+    card.addEventListener('click', () => alert('card click'))
+    btn.addEventListener('click', (e) => {
+        alert('quick look click')
+        e.stopPropagation()
+    })
+</script>
+</html>
