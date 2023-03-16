@@ -104,7 +104,7 @@ let result = 25 & 1
 
 不相等时得到1，相等得到0
 
-![image-20230219160703338](C:\Users\YOUNG\AppData\Roaming\Typora\typora-user-images\image-20230219160703338.png)
+![image-20230219160703338](https://github.com/JNUYoung/JavaScript-Codes-Collection/blob/main/imgs/image-20230219160703338.png)
 
 **5.左移<<    右移>>**
 
@@ -239,7 +239,7 @@ Number.isSafeInteger()
 - substring方法会将所有负参数转换为0；
 - substr方法会将第一个负参数加上字符串长度，第二个负参数转换为0；
 
-![image-20230220202333044](C:\Users\YOUNG\AppData\Roaming\Typora\typora-user-images\image-20230220202333044.png)
+![image-20230220202333044](https://github.com/JNUYoung/JavaScript-Codes-Collection/blob/main/imgs/image-20230220202333044.png)
 
 **5.4 单例内置对象**
 
@@ -249,14 +249,14 @@ ES规范规定Global对象为一种兜底对象，它所针对的是不属于任
 
 **1.URL编码方法**
 
-![image-20230220203018242](C:\Users\YOUNG\AppData\Roaming\Typora\typora-user-images\image-20230220203018242.png)
+![image-20230220203018242](https://github.com/JNUYoung/JavaScript-Codes-Collection/blob/main/imgs/image-20230220203018242.png)
 
 - encodeURL()对uri进行编码
 - encodeURLComponent()会编码所有的非标准字符
 
 **2.URL解码方法**
 
-![image-20230220203139421](C:\Users\YOUNG\AppData\Roaming\Typora\typora-user-images\image-20230220203139421.png)
+![image-20230220203139421](https://github.com/JNUYoung/JavaScript-Codes-Collection/blob/main/imgs/image-20230220203139421.png)
 
 ------
 
@@ -497,7 +497,7 @@ searchParams.delete('q')
 
 window.screen保存的是浏览器窗口外面的客户端显示器的信息，比如像素宽度和高度等。
 
-![image-20230226165732880](C:\Users\YOUNG\AppData\Roaming\Typora\typora-user-images\image-20230226165732880.png)
+![image-20230226165732880](https://github.com/JNUYoung/JavaScript-Codes-Collection/blob/main/imgs/image-20230226165732880.png)
 
 ### 5.history对象
 
@@ -644,7 +644,7 @@ drawImage()方法
 
 服务器在响应HTTP请求时，在响应报文的首部字段中设置 Set-Cookie选项，将key-value类型的cookie字段发送给浏览器存储。
 
-![image-20230211182935400](C:\Users\YOUNG\AppData\Roaming\Typora\typora-user-images\image-20230211182935400.png)
+![image-20230211182935400](https://github.com/JNUYoung/JavaScript-Codes-Collection/blob/main/imgs/image-20230211182935400.png)
 
 浏览器在之后对于该站点的每个请求中都会通过HTTP头部的cookie字段将其发送给服务器用来进行**唯一标识发送请求的客户端**。
 
@@ -666,7 +666,7 @@ cookie由以下参数构成：
 - 过期时间：到这个时刻时在客户端删除该cookie
 - 安全标志：设置后，***只有使用SSL***才会把cookie发送到服务器【只需要在Set-Cookie字段后添加 secure即可】
 
-![image-20230211183925472](C:\Users\YOUNG\AppData\Roaming\Typora\typora-user-images\image-20230211183925472.png)
+![image-20230211183925472](https://github.com/JNUYoung/JavaScript-Codes-Collection/blob/main/imgs/image-20230211183925472.png)
 
 
 
