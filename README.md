@@ -104,7 +104,7 @@ let result = 25 & 1
 
 不相等时得到1，相等得到0
 
-![image-20230219160703338](https://github.com/JNUYoung/JavaScript-Codes-Collection/blob/main/imgs/image-20230219160703338.png)
+![image](https://github.com/JNUYoung/JavaScript-Codes-Collection/blob/main/imgs/image-20230219160703338.png)
 
 **5.左移<<    右移>>**
 
