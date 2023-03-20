@@ -632,6 +632,112 @@ drawImage()方法
 
 
 
+## Chapter24 - 网络请求与远程资源
+
+### 1.XMLHttpRequest对象
+
+- xhr.open() 设置请求的方法，资源路径，是否异步
+- xhr.send() 发送请求
+- xhr.responseText 响应体文本
+- xhr.responseXML：响应的内容
+- xhr.statue：响应状态码
+- xhr.statueText：响应的状态文本
+
+xhr对象还有一个readyState属性，表明xhr实例在请求发送整个过程中的状态的变化，这个属性值变化时会触发readyStateChange事件，通过给该事件注册回调，可以在接收到响应后进行相关操作。
+
+- xhr.setRequestHeader(key, value)：设置自定义请求头
+- xhr.getAllResponseHeaders()：取得所有响应头
+
+**XMLHttpRequest Level 2**
+
+1. FormData类型，该构造函数可以直接接收一个DOM表单元素，从而将实例直接传入xhr.send()方法中；
+2. 超时处理：xhr.timeout属性可以设置请求timeout秒后如果响应不成功就中断请求，会触发timeout事件；
+3. overrideMimeType()方法：重写xhr响应的MIME类型；
+
+### 2.进度事件
+
+定义了客户端-服务器之间通信进度相关的事件。
+
+- loadstart：接收到响应的第一个字节时触发；
+- progress：接收响应的期间不断触发；
+- 【下面三个事件互斥，只会触发一个 】
+- error：请求出错
+- abort：调用abort()终止连接时触发；
+- load：成功接收响应时触发；
+- loadend：通信完成后触发；
+
+**利用progress事件提供进度条，progress事件具有一些属性**
+
+- lengthComputable：进度信息是否可用
+- position：接收到的字节数
+- totalSize：响应报文头部的content-length中的总字节数
+
+```js
+xhr.onProgress = function(e) {
+    const statusShow = document.getElementById('#statusShow')
+    if (e.lengthComputable) {
+        statusShow.innerHTML = `
+    	receied ${e.position} of ${e.totalSize} bytes
+    `
+    }
+}
+```
+
+### 3.跨域资源共享 cors
+
+基本思路：使用自定义的HTTP头部允许浏览器和服务器互相了解，以确定请求或响应应该成功还是失败。
+
+**1.简单请求**
+
+get、post请求且没有自定义头部，请求头会有一个origin头部字段，值为请求发起的地址。
+
+服务器收到该请求后若决定响应请求，则会发送Access-Control-Allow-Origin：xxx
+
+**2.预检请求 preflighted request**
+
+浏览器使用自定义头部、或者除了get和post之外的方法，以及不同的请求体类型时，会先使用OPTIONS方法发送一个预检请求。
+
+该预检请求包含以下头部：
+
+- origin
+- Access-Control-Allow-Methods
+- Access-Control-Allow-Headers
+
+服务器可以确定是否允许这些HTTP方法和头部，并在返回的报文头部设置以下字段：
+
+- Access-Control-Allow-Origin
+- Access-Control-Allow-Methods
+- Access-Control-Allow-Headers
+- Access-Control-Max-Age：在多少秒的时间内，不会再对这些已检查过的请求进行检查
+
+**3.凭据请求**
+
+通过将xhr对象的withCredentials属性设置为true表明请求时会发生凭据；
+
+响应时可以设置Access-Control-Allow-Credentials: true
+
+### 4.图片跨域
+
+利用img标签的src属性，并且设置img标签的load和error事件。
+
+### 5.JSONP - JSON with padding 跨域
+
+动态创建script元素并且为其src属性指定跨域的url，将callback作为请求参数，当内容响应时就会触发回调。
+
+### 6.Fetch API
+
+### 7.Beacon API（信标）
+
+前端应用监控工具，网页分析工具，会在页面加载前就开始运行，在用户将要关闭页面时尽可能晚地将监控数据或收集数据发送给服务端。
+
+理想情况是在页面的unload事件中进行该操作，但是unload事件触发时，就意味着页面即将销毁，此时会取消所有的异步任务。
+
+Beacon API为navigator对象添加了***sendBeacon()***方法，该方法可以将数据发送给服务端，即使页面已经被关闭。
+
+
+
+
+
 ## Chapter25-客户端存储
 
 与用户相关的信息应该保存在用户的机器上，例如登录信息、个人偏好、或者其它数据，都需要有解决方案将其保存在客户端。
