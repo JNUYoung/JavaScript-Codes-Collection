@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</head>
+
+<body>
+    
+</body>
+<script>
+    // 防抖 - 事件触发后等待timeout时间再执行回调，若这期间再次触发，则重置定时器。防止短时间内频繁的操作带来的大量的没有实际意义的回调函数执行
+    // 例如对于表单输入元素的输入事件的监听、页面上下滚动时的事件监听
+    const debounce = function (fn, timeout) {
+        let timer = null
+        return function() {
+            // 如果定时器还存在,表示还未达到规定时间,则重置定时器
+            if (timer !== null) clearTimeout(timer)
+            timer = setTimeout(fn, timeout)
+        }
+    }
+
+    // 节流 - throttle，持续触发事件时，保证一定时间内仅调用一次事件。
+    // 第一次触发事件后,设置一个定时器,若在定时器还存在时,就不执行回调,直到指定的时间后,执行回调并且设置下一个定时器
+    const throttle = function(fn, delay) {
+        let timer = null
+        return function() {
+            const context = this
+            console.log(context)
+            const args = arguments
+            // 如果无定时器,则重新设置一个定时器,设置delay ms后执行回调
+            // 如果有定时器,则什么也不做
+            if (!timer) {
+                timer = setTimeout(function() {
+                    fn.apply(context, args)
+                    timer = null
+                }, delay)
+            }
+        }
+    }
+
+    function handle() {
+        console.log('scroll')
+    }
+
+    // window.addEventListener('scroll', debounce(handle, 1000))
+    window.addEventListener('scroll', throttle(handle, 1000))
+</script>
+
+</html>
